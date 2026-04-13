@@ -62,3 +62,57 @@ public class StringCompression {
         sc.close(); 
     }
 }
+/*ALTENATE
+class Solution {
+    public int compress(char[] chars) {
+
+        int n = chars.length;
+        int index = 0;
+        int i = 0;
+
+        while (i < n) {
+
+            char currentChar = chars[i];
+            int count = 0;
+
+            // count occurrences
+            while (i < n && chars[i] == currentChar) {
+                i++;
+                count++;
+            }
+
+            // write character
+            chars[index++] = currentChar;
+
+            // write count manually
+            if (count > 1) {
+
+                int start = index;
+
+                // write digits in reverse order
+                while (count > 0) {
+                    chars[index++] = (char) ('0' + (count % 10));
+                    count /= 10;
+                }
+
+                // reverse digits to correct order
+                reverse(chars, start, index - 1);
+            }
+        }
+
+        return index;
+    }
+
+    // helper function to reverse part of array
+    private void reverse(char[] arr, int left, int right) {
+        while (left < right) {
+            char temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+
+*/
